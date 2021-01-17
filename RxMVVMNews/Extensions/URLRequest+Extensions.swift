@@ -21,7 +21,7 @@ extension URLRequest {
         return Observable.just(resource.url)
             .observeOn(scheduler)
             .flatMap { url -> Observable<(response: HTTPURLResponse, data: Data)> in
-                let request = URLRequest(url: url, cachePolicy: .returnCacheDataDontLoad)
+                let request = URLRequest(url: url)
                 return URLSession.shared.rx.response(request: request)
             }
             .map { response, data in
